@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.dapitramdhan"
+    android:versionCode="1"
+	android:versionName="1.0">
+
+    
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31"/>
+
+    <application
+		android:name=".Applications"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+		android:largeHeap="true"
+		android:resizeableActivity="true"
+        android:theme="@style/Theme.TranslucentActionBar">
+        <activity
+			android:theme="@style/Theme.TranslucentActionBar.ActionBar.Overlay"
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		
+		<activity
+			android:name=".DebugActivity"
+			android:screenOrientation="portrait"/>
+		<meta-data
+			android:name="android.max.aspect"
+			android:value="4.0"/>
+    </application>
+
+</manifest>

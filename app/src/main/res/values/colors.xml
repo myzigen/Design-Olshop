@@ -1,0 +1,12 @@
+<resources>
+
+    <color name="colorPrimary">#204ecf</color>
+    <color name="colorPrimaryDark">#ffe31e50</color>
+	<color name="colorDefault">#808080</color>
+	<color name="colorLight">#f7f8f9</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+	<color name="colorTransparent">@android:color/transparent</color>
+	<color name="toolbarColor">#512da8</color>
+
+</resources>
