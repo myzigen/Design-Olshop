@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		bottomNavigationView = findViewById(R.id.bottomnavigation);
+	//	CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+	//	layoutParams.setBehavior(new BottomNavigationBehavior());
 		badge = bottomNavigationView.getOrCreateBadge(R.id.transaksiNav);
 		badge.setVisible(true);
 		badge.setNumber(9);

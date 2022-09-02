@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.github.dapitramdhan.productlist.ModelPerson;
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ public class HomeUtama extends Fragment {
 	private Toolbar toolbar;
 	private Drawable mActionBarBackgroundDrawable;
 	private View mHeader;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,13 +40,14 @@ public class HomeUtama extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		toolbar = view.findViewById(R.id.toolbar);
-		getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.colorTransparent));
+		getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.colorPrimary));
 		((AppCompatActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
 		mActionBarBackgroundDrawable = getResources().getDrawable(R.drawable.warna_utama);
 		toolbar.setBackgroundDrawable(mActionBarBackgroundDrawable);
 		mActionBarBackgroundDrawable.setAlpha(0);
 		((ToolbarFadeOnScrolling) view.findViewById(R.id.scrollview))
 				.setOnScrollChangedListener(mOnScrollChangedListener);
+		
 
 		// 
 

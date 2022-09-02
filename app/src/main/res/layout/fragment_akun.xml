@@ -1,18 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
-    android:fitsSystemWindows="true"
     android:focusable="true"
     android:focusableInTouchMode="true" >
-	
-	<androidx.appcompat.widget.Toolbar
-		android:id="@+id/akunToolbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@color/colorPrimary"/>
 
-   
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/akunToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+		app:titleTextColor="@android:color/white" />
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
