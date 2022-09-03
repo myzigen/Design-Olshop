@@ -9,15 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:fitsSystemWindows="true"
         android:translationZ="0.1dp"
-		android:fitsSystemWindows="true"
         app:elevation="0.1dp" >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-			android:fitsSystemWindows="true"
+            android:fitsSystemWindows="true"
             app:contentInsetEnd="3dp"
             app:contentInsetLeft="10dp"
             app:contentInsetRight="3dp"
@@ -37,8 +37,8 @@
                     android:gravity="center_vertical|center|center_horizontal|left"
                     android:text="Cari Di Bukatoko"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorDefault"
-                    android:textSize="13dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12.5dp"
                     android:typeface="sans"
                     app:backgroundTint="@color/white"
                     app:cornerRadius="2dp" />
@@ -92,12 +92,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="285dp" >
 
-                <ImageView
-                    android:id="@+id/image_header"
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/images" />
+                    app:sliderAnimationDuration="1000"
+                    app:sliderIndicatorAnimationDuration="1000"
+                    app:sliderIndicatorEnabled="true"
+                    app:sliderIndicatorGravity="center|bottom"
+                    app:sliderIndicatorMarginBottom="25dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="1.4dp"
+                    app:sliderIndicatorSelectedColor="@color/colorPrimary"
+                    app:sliderIndicatorUnselectedColor="#FFF"
+                    app:sliderScrollTimeInSec="1" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -190,13 +199,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2" />
+                app:spanCount="2"
+				android:padding="8dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/text_panjang" />
+            
         </LinearLayout>
     </com.github.dapitramdhan.ToolbarFadeOnScrolling>
 

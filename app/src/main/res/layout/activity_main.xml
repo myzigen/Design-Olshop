@@ -4,36 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:statusBarBackground="@color/black" >
-	
-	<com.github.dapitramdhan.WindowInsetsRelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container"
+    <com.github.dapitramdhan.WindowInsetsRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomnavigation"
-        android:background="#fffafafa" />
+        android:layout_height="match_parent" >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.800000011920929dp"
-        android:layout_above="@+id/bottomnavigation"
-        android:background="#ffdddddd" />
+        
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomnavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        app:elevation="0dp"
-        app:itemIconTint="@drawable/bottom_selector"
-        app:itemTextColor="@drawable/bottom_selector"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottomnav" />
-		
-		</com.github.dapitramdhan.WindowInsetsRelativeLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomnavigation"
+            android:layout_below="@+id/appbar"
+            android:background="@color/colorLight" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.800000011920929dp"
+            android:layout_above="@+id/bottomnavigation"
+            android:background="#ffdddddd" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomnavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+			app:itemRippleColor="@drawable/primary_transparent"
+            app:elevation="0dp"
+            app:itemIconTint="@drawable/bottom_selector"
+            app:itemTextColor="@drawable/bottom_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottomnav" />
+    </com.github.dapitramdhan.WindowInsetsRelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
