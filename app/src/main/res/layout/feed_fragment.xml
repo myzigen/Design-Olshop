@@ -8,19 +8,19 @@
         android:id="@+id/feedToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:fitsSystemWindows="true"
         android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
         app:titleTextColor="@android:color/white" />
-		
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-			
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Feed"
-				android:layout_centerInParent="true"/>
-		</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Pesanan" />
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

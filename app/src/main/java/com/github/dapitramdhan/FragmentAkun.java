@@ -15,7 +15,7 @@ public class FragmentAkun extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_akun, container, false);
-		getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.colorPrimary));
+	//	getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.colorPrimary));
 		return view;
 	}
 

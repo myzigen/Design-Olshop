@@ -21,12 +21,6 @@
     "versionName": "2.1.0"
   },
   {
-    "artifactId": "picasso",
-    "excludes": [],
-    "groupId": "com.squareup.picasso",
-    "versionName": "2.8"
-  },
-  {
     "artifactId": "glide",
     "excludes": [],
     "groupId": "com.github.bumptech.glide",
@@ -37,5 +31,17 @@
     "excludes": [],
     "groupId": "com.github.smarteist",
     "versionName": "1.4.0"
+  },
+  {
+    "artifactId": "picasso",
+    "excludes": [],
+    "groupId": "com.squareup.picasso",
+    "versionName": "2.5.2"
+  },
+  {
+    "artifactId": "volley",
+    "excludes": [],
+    "groupId": "com.android.volley",
+    "versionName": "1.0.0"
   }
 ]

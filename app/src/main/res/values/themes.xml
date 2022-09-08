@@ -3,27 +3,43 @@
     <style name="Theme.TranslucentActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="windowActionBar">false</item>
-		
+		<item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="windowActionBar">false</item>	
         <item name="android:windowNoTitle">true</item>
 		<item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="Theme.TranslucentActionBar.ActionBar" />
-
     <style name="Theme.TranslucentActionBar.ActionBar.Overlay">
         <item name="android:actionBarStyle">@style/Widget.ActionBar.Transparent</item>
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBar">false</item>
-         
+        <item name="windowActionBar">false</item>     
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+	
+	<style name="whiteTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+		<item name="android:actionBarStyle">@style/Widget.ActionBar</item>
+        <item name="colorPrimary">@color/white</item>
+		<item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="windowActionBar">false</item>	
+        <item name="android:windowNoTitle">true</item>
+		<item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+	</style>
+	
+	<style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+		<item name="android:windowTranslucentStatus">true</item>
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
+	</style>
 
     <style name="ToolbarTheme">
         <item name="colorPrimary">@color/toolbarColor</item>
         <item name="colorPrimaryDark">@color/toolbarColor</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<item name="android:tint">#dddddd</item>
     </style>
 
 </resources>

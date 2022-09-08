@@ -1,43 +1,52 @@
 package com.github.dapitramdhan;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
 import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.FragmentContainerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.load.model.stream.QMediaStoreUriLoader;
-import com.github.dapitramdhan.productlist.ModelPerson;
-import com.google.android.material.snackbar.Snackbar;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import com.github.dapitramdhan.ProdukActivity.Produk;
+import com.github.dapitramdhan.ProdukActivity.ProdukAdapter;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderView;
-import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class HomeUtama extends Fragment {
+import java.util.ArrayList;
+
+public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickListener {
 
 	private Toolbar toolbar;
 	private Drawable mActionBarBackgroundDrawable;
 	private View mHeader;
+
+	public static final String EXTRA_URL = "imageUrl";
+	public static final String EXTRA_CREATOR = "creatorName";
+	public static final String EXTRA_LIKES = "likeCount";
+
+	private RecyclerView mRecylerView;
+	private ProdukAdapter mExampleAdapter;
+	private ArrayList<Produk> mExampleList;
+	private RequestQueue mRequestQueue;
+
 	String url1 = "https://lh3.googleusercontent.com/-UyYKaDd0-ng/YxMr7W7gFWI/AAAAAAAACeQ/j8dJJ2hbWuovtVgHGl8nxTFrmVlrIzT4wCNcBGAsYHQ/s1600/IMG_ORG_1662200804074.png";
 	String url2 = "https://lh3.googleusercontent.com/-eV3UaXmz6Ks/YxM2ZxScNHI/AAAAAAAACec/-IdeYuBOldMW8kvy_OXT1uU_2JP9q2t5QCNcBGAsYHQ/s1600/IMG_1662203478357.jpg";
 	String url3 = "https://lh3.googleusercontent.com/-UOSehD-FDiA/YxM2avcDSHI/AAAAAAAACeg/6dVp6RMnPW06tWlyz8tLKkLXwW90K3s6ACNcBGAsYHQ/s1600/IMG_1662203478431.jpg";
@@ -80,27 +89,85 @@ public class HomeUtama extends Fragment {
 		// to start autocycle below method is used.
 		sliderView.startAutoCycle();
 
+		// seting icon katwgori
+		List<IconGridKategory> iconList;
+		RecyclerView recyclerView1;
+		recyclerView1 = view.findViewById(R.id.recylerIconKategori);
+		recyclerView1.setHasFixedSize(true);
+		iconList = new ArrayList<>();
+		iconList.add(new IconGridKategory(1, "satu", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "dua", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "tiga", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "empat", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "lima", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "enam", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "tujuh", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "delapan", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "sembilan", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "sepuluh", R.drawable.ic_home));
+		IconGridKategoryAdapter adapter2 = new IconGridKategoryAdapter(getActivity(), iconList);
+		recyclerView1.setAdapter(adapter2);
+
 		// setting produk
+		mRecylerView = view.findViewById(R.id.recylerView);
+		mRecylerView.setHasFixedSize(true);
 
-		List<Produk> produkList;
-		RecyclerView recyclerView;
+		mExampleList = new ArrayList<>();
+		mRequestQueue = Volley.newRequestQueue(getActivity());
+		parseJSON();
 
-		recyclerView = view.findViewById(R.id.recylerView);
-		recyclerView.setHasFixedSize(true);
-		produkList = new ArrayList<>();
-		produkList.add(new Produk(1, "Apple Macbook", 60000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		produkList.add(new Produk(2, "dell", 5000, 5, R.drawable.images));
-		ProdukAdapter adapter1 = new ProdukAdapter(getActivity(), produkList);
-		recyclerView.setAdapter(adapter1);
 		return view;
+	}
+
+	private void parseJSON() {
+		String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+				new Response.Listener<JSONObject>() {
+					@Override
+					public void onResponse(JSONObject response) {
+
+						try {
+							JSONArray jsonArray = response.getJSONArray("hits");
+							for (int i = 0; i < jsonArray.length(); i++) {
+								JSONObject hit = jsonArray.getJSONObject(i);
+
+								String creatorName = hit.getString("user");
+								String imageUrl = hit.getString("webformatURL");
+								int likeCount = hit.getInt("likes");
+								mExampleList.add(new Produk(imageUrl, creatorName, likeCount));
+
+							}
+							mExampleAdapter = new ProdukAdapter(getActivity(), mExampleList);
+							mExampleAdapter.notifyDataSetChanged();
+							mRecylerView.setAdapter(mExampleAdapter);
+
+							mExampleAdapter.setOnItemClickListener(HomeUtama.this);
+
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						error.printStackTrace();
+					}
+				});
+		mRequestQueue.add(request);
+	}
+
+	// item click produk detail
+
+	@Override
+	public void onItemClick(int position) {
+		Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
+		Produk clickedItem = mExampleList.get(position);
+
+		detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
+		detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+		detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikesCount());
+		startActivity(detailIntent);
 	}
 
 	@Override

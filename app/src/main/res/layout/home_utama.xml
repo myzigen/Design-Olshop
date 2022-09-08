@@ -18,10 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentInsetEnd="3dp"
-            app:contentInsetLeft="10dp"
-            app:contentInsetRight="3dp"
-            app:contentInsetStart="10dp" >
+            app:contentInsetEnd="1dp"
+            app:contentInsetLeft="7dp"
+            app:contentInsetRight="1dp"
+            app:contentInsetStart="7dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,10 +34,11 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_search"
                     android:elevation="0dp"
+                    android:focusable="false"
                     android:gravity="center_vertical|center|center_horizontal|left"
                     android:text="Cari Di Bukatoko"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorDefault"
                     android:textSize="12.5dp"
                     android:typeface="sans"
                     app:backgroundTint="@color/white"
@@ -112,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom|center_vertical"
-                    android:layout_margin="10dp"
+                    android:layout_margin="8dp"
                     app:cardCornerRadius="2dp" >
 
                     <LinearLayout
@@ -195,14 +196,25 @@
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerIconKategori"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:nestedScrollingEnabled="false"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="5" />
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recylerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+				
+                android:nestedScrollingEnabled="false"
+                android:padding="5dp"
+				android:visibility="visible"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-				android:padding="8dp" />
-
-            
+                app:spanCount="2" />
         </LinearLayout>
     </com.github.dapitramdhan.ToolbarFadeOnScrolling>
 

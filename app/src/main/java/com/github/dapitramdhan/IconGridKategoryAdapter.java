@@ -9,50 +9,46 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ProdukViewHolder> {
+public class IconGridKategoryAdapter extends RecyclerView.Adapter<IconGridKategoryAdapter.ProdukViewHolder> {
 	private Context mCtx;
-	private List<Produk> produkList;
+	private List<IconGridKategory> iconList;
 
-	public ProdukAdapter(Context mCtx, List<Produk> produkList) {
+	public IconGridKategoryAdapter(Context mCtx, List<IconGridKategory> iconList) {
 		this.mCtx = mCtx;
-		this.produkList = produkList;
+		this.iconList = iconList;
 	}
 
 	@Override
 	public ProdukViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(mCtx);
-		View view = inflater.inflate(R.layout.produk_layout, null);
+		View view = inflater.inflate(R.layout.icon_grid_kategori, null);
 		return new ProdukViewHolder(view);
 	}
 
 	@Override
 	public void onBindViewHolder(ProdukViewHolder holder, int position) {
-		Produk produk = produkList.get(position);
-		
+		IconGridKategory iconGridKategory = iconList.get(position);
+
 		// Panggil Nama produk , harga , image
-		holder.textViewTitle.setText(produk.getTitle());
-		holder.textViewPrice.setText(String.valueOf(produk.getPrice()));
-		holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(produk.getImage()));
+		holder.textViewTitle.setText(iconGridKategory.getTitle());
+		holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(iconGridKategory.getImage()));
 	}
 
 	@Override
 	public int getItemCount() {
-		return produkList.size();
+		return iconList.size();
 
 	}
 
 	class ProdukViewHolder extends RecyclerView.ViewHolder {
 		TextView textViewTitle;
-		TextView textViewPrice;
-		TextView textViewRating;
 		ImageView imageView;
 
 		public ProdukViewHolder(View itemView) {
 			super(itemView);
 
-			textViewTitle = itemView.findViewById(R.id.namaProduk);
-			textViewPrice = itemView.findViewById(R.id.hargaProduk);
-			imageView = itemView.findViewById(R.id.imageProduk);
+			textViewTitle = itemView.findViewById(R.id.namaIcon);
+			imageView = itemView.findViewById(R.id.iconKategoriGrid);
 		}
 	}
 }
