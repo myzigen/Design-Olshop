@@ -57,6 +57,18 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ExampleVie
 		return mExampleList.size();
 	}
 	
+	@Override
+    public int getItemViewType(int position)
+    {
+        return position;
+    }
+ 
+    @Override
+    public long getItemId(int position)
+    {
+        return position;
+    }
+	
 		
 	public class ExampleViewHolder extends RecyclerView.ViewHolder{
 		

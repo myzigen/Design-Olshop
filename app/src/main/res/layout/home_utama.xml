@@ -29,6 +29,7 @@
                 android:orientation="horizontal" >
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/search_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -91,7 +92,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="285dp" >
+                android:layout_height="285dp"
+                android:background="@android:color/white" >
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/slider"
@@ -101,7 +103,7 @@
                     app:sliderIndicatorAnimationDuration="1000"
                     app:sliderIndicatorEnabled="true"
                     app:sliderIndicatorGravity="center|bottom"
-                    app:sliderIndicatorMarginBottom="25dp"
+                    app:sliderIndicatorMarginBottom="22dp"
                     app:sliderIndicatorOrientation="horizontal"
                     app:sliderIndicatorPadding="3dp"
                     app:sliderIndicatorRadius="1.4dp"
@@ -205,14 +207,29 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="5" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center|center_horizontal"
+                    android:text="REKOMENDASI"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recylerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-				
                 android:nestedScrollingEnabled="false"
                 android:padding="5dp"
-				android:visibility="visible"
+                android:visibility="visible"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2" />
         </LinearLayout>

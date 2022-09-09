@@ -2,6 +2,7 @@ package com.github.dapitramdhan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 
 import com.github.dapitramdhan.ProdukActivity.Produk;
 import com.github.dapitramdhan.ProdukActivity.ProdukAdapter;
+import com.google.android.material.button.MaterialButton;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderView;
 import java.util.List;
@@ -35,7 +37,8 @@ import java.util.ArrayList;
 public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickListener {
 
 	private Toolbar toolbar;
-	private Drawable mActionBarBackgroundDrawable;
+	private Drawable mActionBarBackgroundDrawable, searchDrawable;
+	private MaterialButton searchButton;
 	private View mHeader;
 
 	public static final String EXTRA_URL = "imageUrl";
@@ -59,16 +62,13 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
 		// initializing the slider view.
 		SliderView sliderView = view.findViewById(R.id.slider);
-
 		// adding the urls inside array list
 		sliderDataArrayList.add(new SliderData(url1));
 		sliderDataArrayList.add(new SliderData(url2));
 		sliderDataArrayList.add(new SliderData(url3));
 		sliderDataArrayList.add(new SliderData(url4));
-
 		// passing this array list inside our adapter class.
 		SliderAdapter adapter = new SliderAdapter(getActivity(), sliderDataArrayList);
-
 		// below method is used to set auto cycle direction in left to
 		// right direction you can change according to requirement.
 		sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
@@ -77,11 +77,9 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		// below method is used to
 		// setadapter to sliderview.
 		sliderView.setSliderAdapter(adapter);
-
 		// below method is use to set
 		// scroll time in seconds.
 		sliderView.setScrollTimeInSec(3);
-
 		// to set it scrollable automatically
 		// we use below method.
 		sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
@@ -89,7 +87,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		// to start autocycle below method is used.
 		sliderView.startAutoCycle();
 
-		// seting icon katwgori
+		// seting icon kategori
 		List<IconGridKategory> iconList;
 		RecyclerView recyclerView1;
 		recyclerView1 = view.findViewById(R.id.recylerIconKategori);
@@ -111,11 +109,9 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		// setting produk
 		mRecylerView = view.findViewById(R.id.recylerView);
 		mRecylerView.setHasFixedSize(true);
-
 		mExampleList = new ArrayList<>();
 		mRequestQueue = Volley.newRequestQueue(getActivity());
 		parseJSON();
-
 		return view;
 	}
 
@@ -139,9 +135,8 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 							}
 							mExampleAdapter = new ProdukAdapter(getActivity(), mExampleList);
-							mExampleAdapter.notifyDataSetChanged();
 							mRecylerView.setAdapter(mExampleAdapter);
-
+							mExampleAdapter.notifyDataSetChanged();
 							mExampleAdapter.setOnItemClickListener(HomeUtama.this);
 
 						} catch (JSONException e) {
@@ -163,7 +158,6 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 	public void onItemClick(int position) {
 		Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
 		Produk clickedItem = mExampleList.get(position);
-
 		detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
 		detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
 		detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikesCount());
@@ -176,11 +170,14 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 		// Toolbar Fade
 		toolbar = view.findViewById(R.id.toolbar);
-		getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.colorPrimary));
+		searchButton = view.findViewById(R.id.search_home);
+		mHeader = view.findViewById(R.id.slider);
+
 		((AppCompatActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
 		mActionBarBackgroundDrawable = getResources().getDrawable(R.drawable.warna_utama);
 		toolbar.setBackgroundDrawable(mActionBarBackgroundDrawable);
 		mActionBarBackgroundDrawable.setAlpha(0);
+
 		((ToolbarFadeOnScrolling) view.findViewById(R.id.scrollview))
 				.setOnScrollChangedListener(mOnScrollChangedListener);
 	}
@@ -189,11 +186,19 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 	private ToolbarFadeOnScrolling.OnScrollChangedListener mOnScrollChangedListener = new ToolbarFadeOnScrolling.OnScrollChangedListener() {
 		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
-			final int headerHeight = toolbar.getHeight();
+			View decor = getActivity().getWindow().getDecorView();
+			final int headerHeight = mHeader.getHeight() - toolbar.getHeight();
 			final float ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
 			final int newAlpha = (int) (ratio * 255);
-			mActionBarBackgroundDrawable.setAlpha(newAlpha);
 
+			if (t + ratio == 0) {
+				//searchDrawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+				//decor.setSystemUiVisibility(0);
+			} else {
+				//searchDrawable.setColorFilter(getResources().getColor(R.color.colorLight), PorterDuff.Mode.SRC_ATOP);
+				//decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+			}
+			mActionBarBackgroundDrawable.setAlpha(newAlpha);
 		}
 	};
 

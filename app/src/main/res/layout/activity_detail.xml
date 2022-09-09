@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="left"
+                        android:gravity="center_horizontal|left"
                         android:orientation="horizontal" >
 
                         <ImageButton
@@ -45,43 +45,43 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/oval_rounded"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             android:tint="#000000"
-							android:clickable="true"
-							android:foreground="?attr/selectableItemBackground"
-                            app:srcCompat="@drawable/ic_arrow_back_black" />
+                            app:srcCompat="@drawable/ic_arrow_back_white" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="right"
+                        android:gravity="center_horizontal|right"
                         android:orientation="horizontal" >
 
                         <ImageButton
-							android:clickable="true"
-							android:foreground="?attr/selectableItemBackground"
                             android:id="@+id/button_back2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="center_horizontal|right"
                             android:background="@drawable/oval_rounded"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             android:tint="#000000"
                             app:srcCompat="@drawable/ic_cart" />
-							
-							<View
-								android:layout_width="5dp"
-								android:layout_height="0dp"
-								android:background="@android:color/transparent"/>
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="0dp"
+                            android:background="@android:color/transparent" />
 
                         <ImageButton
                             android:id="@+id/button_back3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="center_horizontal|right"
                             android:background="@drawable/oval_rounded"
-							android:clickable="true"
-							android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             android:tint="#000000"
                             app:srcCompat="@drawable/ic_share" />
                     </LinearLayout>
@@ -105,8 +105,8 @@
                 <ImageView
                     android:id="@+id/image_view_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="330dp"
-                    android:scaleType="fitXY"
+                    android:layout_height="350dp"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher" />
 
                 <LinearLayout
@@ -120,11 +120,11 @@
                         android:id="@+id/text_view_creator_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-						android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:text="Cretaor Name"
                         android:textColor="@color/black"
-                        android:textSize="18dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/text_view_like_detail"
@@ -132,19 +132,48 @@
                         android:layout_height="wrap_content"
                         android:text="Likes:"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="17sp" />
 
-                    <androidx.appcompat.widget.AppCompatRatingBar
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+						android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-						android:isIndicator="false"
-						android:numStars="5" 
-						android:rating="5"
-						android:stepSize="1" />
+                        android:gravity="center_vertical|center|center_horizontal|left"
+                        android:orientation="horizontal" >
+
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:numStars="5"
+                            android:paddingTop="10dp"
+                            android:progressTint="#FFA200"
+                            android:rating="3.5"
+                            android:stepSize="0.5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4.5dp"
+                            android:text="11Rb Terjual"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+					
+					<WebView
+						android:layout_marginTop="10dp"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:id="@+id/deskripsi_produk">
+						
+					</WebView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
                         android:text="@string/text_panjang" />
                 </LinearLayout>
             </LinearLayout>

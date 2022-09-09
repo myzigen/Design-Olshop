@@ -8,11 +8,17 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorStateListDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import android.view.Menu;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +29,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import android.view.View;
 import androidx.core.widget.NestedScrollView;
@@ -38,6 +45,7 @@ public class DetailActivity extends AppCompatActivity {
 	private AppBarLayout appBarLayout;
 	private ImageButton buttonBack1, buttonBack2, buttonBack3;
 	private ToolbarFadeOnScrolling scrool;
+	private WebView webView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
 		//getSupportActionBar().setDisplayShowHomeEnabled(true);
 		//toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
 
-		drawableToolbar = getResources().getDrawable(R.drawable.warna_utama);
+		drawableToolbar = getResources().getDrawable(R.drawable.warna_utama_white);
 		toolbar.setBackgroundDrawable(drawableToolbar);
 		drawableToolbar.setAlpha(0);
 		mHeader = findViewById(R.id.image_view_detail);
@@ -59,11 +67,14 @@ public class DetailActivity extends AppCompatActivity {
 		buttonBack1 = findViewById(R.id.button_back1);
 		buttonBack2 = findViewById(R.id.button_back2);
 		buttonBack3 = findViewById(R.id.button_back3);
+
 		iconBack = getResources().getDrawable(R.drawable.oval_rounded);
 		buttonBack1.setBackgroundDrawable(iconBack);
 		buttonBack2.setBackgroundDrawable(iconBack);
 		buttonBack3.setBackgroundDrawable(iconBack);
-		iconBack.setAlpha(0);
+		buttonBack1.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+		buttonBack2.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+		buttonBack3.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
 		((ToolbarFadeOnScrolling) findViewById(R.id.scroll_produk_detail))
 				.setOnScrollChangedListener(mOnScrollChangedListener);
@@ -76,10 +87,71 @@ public class DetailActivity extends AppCompatActivity {
 		ImageView imageView = findViewById(R.id.image_view_detail);
 		TextView textViewCreator = findViewById(R.id.text_view_creator_detail);
 		TextView textViewLikes = findViewById(R.id.text_view_like_detail);
+		
 
 		Picasso.with(this).load(imageUrl).fit().centerInside().into(imageView);
 		textViewCreator.setText(creatorName);
 		textViewLikes.setText("Likes:" + likeCount);
+		
+		webView = findViewById(R.id.deskripsi_produk);
+		// Deskripsi WebView
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		// Check internet Connection 
+		if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+				.getState() == NetworkInfo.State.CONNECTED
+				|| connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+						.getState() == NetworkInfo.State.CONNECTED) {
+
+			webView.setWebViewClient(new WebViewClient());
+			webView.loadUrl("file:///android_asset/deskripsi_produk.html");
+			//webView.loadUrl("https://google.com");
+
+			//LOADING .html FILE WITH ANDROID WebView 
+
+			WebSettings webSetting = webView.getSettings();
+			webSetting.setJavaScriptEnabled(true);
+
+			/*
+			 *  Solve this
+			 *
+			 *  net::ERR_CLEARTEXT_NOT_PERMITTED
+			 *
+			 * Add this Code to Manifest File
+			 *
+			 * <application
+			 * ....
+			 * android:usesCleartextTraffic="true"
+			 * ....>
+			 *
+			 * */
+
+		} else {
+
+			// if no internet
+			Snackbar.make(findViewById(R.id.deskripsi_produk), "NO INTERNET", Snackbar.LENGTH_SHORT).show();
+
+		}
+
+		buttonBack1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent back = new Intent(DetailActivity.this, MainActivity.class);
+				back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(back);
+				finish();
+			}
+		});
+
+		buttonBack3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent share = new Intent(Intent.ACTION_SEND);
+				share.putExtra(share.EXTRA_TEXT, "Aku Share Ya");
+				share.setType("text/plain");
+				startActivity(Intent.createChooser(share, "share to"));
+			}
+		});
 
 	}
 
@@ -87,43 +159,41 @@ public class DetailActivity extends AppCompatActivity {
 
 	private ToolbarFadeOnScrolling.OnScrollChangedListener mOnScrollChangedListener = new ToolbarFadeOnScrolling.OnScrollChangedListener() {
 		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
-			final int headerHeight = toolbar.getHeight();
+			View decor = getWindow().getDecorView();
+			final int headerHeight = mHeader.getHeight() - toolbar.getHeight();
 			final float ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
+			final float ratioRange = (float) Math.min(Math.max(300f - t, +1f), headerHeight) / headerHeight;
 			final int newAlpha = (int) (ratio * 255);
+			final int newAlphaIcon = (int) (ratioRange * 300f);
 
-			updateIconBar(ratio);
+			if (t + ratio == 0) {
+
+				iconBack.setAlpha(300);
+				buttonBack1.setAlpha(255);
+				buttonBack2.setAlpha(255);
+				buttonBack3.setAlpha(255);
+				buttonBack1.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+				buttonBack2.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+				buttonBack3.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+				decor.setSystemUiVisibility(0);
+
+			} else {
+				iconBack.setAlpha(newAlphaIcon);
+				buttonBack1.setAlpha(newAlpha);
+				buttonBack2.setAlpha(newAlpha);
+				buttonBack3.setAlpha(newAlpha);
+				buttonBack1.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+				buttonBack2.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+				buttonBack3.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+				//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+			}
+
 			drawableToolbar.setAlpha(newAlpha);
-			iconBack.setAlpha(newAlpha);
 
 		}
 	};
-
-	private void updateIconBar(float scrollRatio) {
-		boolean isVisible = true;
-		int scrollRange = -2;
-		final int iconAlpha = (int) (scrollRatio * 255);
-
-		if (scrollRange == -2) {
-			scrollRange = appBarLayout.getTotalScrollRange();
-		}
-		if (scrollRange + scrollRatio == 0) {
-			buttonBack1.setAlpha(200);
-			buttonBack2.setAlpha(200);
-			buttonBack3.setAlpha(200);
-			buttonBack1.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-			buttonBack2.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-			buttonBack3.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-
-		} else if (isVisible) {
-			buttonBack1.setAlpha(iconAlpha);
-			buttonBack2.setAlpha(iconAlpha);
-			buttonBack3.setAlpha(iconAlpha);
-			buttonBack1.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-			buttonBack2.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-			buttonBack3.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-
-		}
-	}
 
 	@Override
 	public boolean onSupportNavigateUp() {
