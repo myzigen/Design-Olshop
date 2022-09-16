@@ -250,6 +250,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.cardview.widget.CardView
+					android:id="@+id/card_beli"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"

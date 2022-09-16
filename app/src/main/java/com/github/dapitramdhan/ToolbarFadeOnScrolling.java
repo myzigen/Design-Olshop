@@ -41,7 +41,7 @@ public class ToolbarFadeOnScrolling extends NestedScrollView {
 	}
 
 	public interface OnScrollChangedListener {
-		void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt);
+		void onScrollChanged(NestedScrollView who,  int l, int t, int oldl, int oldt);
 	}
 
 	private OnScrollChangedListener mOnScrollChangedListener;
@@ -62,7 +62,7 @@ public class ToolbarFadeOnScrolling extends NestedScrollView {
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
 		super.onScrollChanged(l, t, oldl, oldt);
 		if (mOnScrollChangedListener != null) {
-			mOnScrollChangedListener.onScrollChanged(this, l, t, oldl, oldt);
+			mOnScrollChangedListener.onScrollChanged(this, l, t, oldl,oldt);
 		}
 	}
 

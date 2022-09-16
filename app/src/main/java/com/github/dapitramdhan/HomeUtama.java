@@ -14,7 +14,9 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -51,9 +53,10 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 	private RequestQueue mRequestQueue;
 
 	String url1 = "https://lh3.googleusercontent.com/-UyYKaDd0-ng/YxMr7W7gFWI/AAAAAAAACeQ/j8dJJ2hbWuovtVgHGl8nxTFrmVlrIzT4wCNcBGAsYHQ/s1600/IMG_ORG_1662200804074.png";
-	String url2 = "https://lh3.googleusercontent.com/-eV3UaXmz6Ks/YxM2ZxScNHI/AAAAAAAACec/-IdeYuBOldMW8kvy_OXT1uU_2JP9q2t5QCNcBGAsYHQ/s1600/IMG_1662203478357.jpg";
-	String url3 = "https://lh3.googleusercontent.com/-UOSehD-FDiA/YxM2avcDSHI/AAAAAAAACeg/6dVp6RMnPW06tWlyz8tLKkLXwW90K3s6ACNcBGAsYHQ/s1600/IMG_1662203478431.jpg";
-	String url4 = "https://lh3.googleusercontent.com/-6euIj2a2tx0/YxM2e5KtOgI/AAAAAAAACew/h-bQQB0EYMs3J28w0vS8UK99MB3RXGW6ACNcBGAsYHQ/s1600/IMG_1662203478689.jpg";
+	String url2 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
+	String url3 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
+	String url4 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
+	String url5 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		sliderDataArrayList.add(new SliderData(url2));
 		sliderDataArrayList.add(new SliderData(url3));
 		sliderDataArrayList.add(new SliderData(url4));
+		sliderDataArrayList.add(new SliderData(url5));
 		// passing this array list inside our adapter class.
 		SliderAdapter adapter = new SliderAdapter(getActivity(), sliderDataArrayList);
 		// below method is used to set auto cycle direction in left to
@@ -108,15 +112,18 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 		// setting produk
 		mRecylerView = view.findViewById(R.id.recylerView);
+		StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL);
+		mRecylerView.setLayoutManager(staggeredGridLayoutManager);
 		mRecylerView.setHasFixedSize(true);
 		mExampleList = new ArrayList<>();
 		mRequestQueue = Volley.newRequestQueue(getActivity());
 		parseJSON();
-		return view;
+		return view; 
 	}
 
 	private void parseJSON() {
-		String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+		String url = "https://pixabay.com/api/?key=29711244-53ea363d58d608d7b5cd3010d&q=product&image_type=photo&pretty=true";
+		// "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true"
 
 		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
 				new Response.Listener<JSONObject>() {
@@ -128,7 +135,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 							for (int i = 0; i < jsonArray.length(); i++) {
 								JSONObject hit = jsonArray.getJSONObject(i);
 
-								String creatorName = hit.getString("user");
+								String creatorName = hit.getString("tags");
 								String imageUrl = hit.getString("webformatURL");
 								int likeCount = hit.getInt("likes");
 								mExampleList.add(new Produk(imageUrl, creatorName, likeCount));

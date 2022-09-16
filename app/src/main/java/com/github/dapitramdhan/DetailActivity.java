@@ -129,7 +129,7 @@ public class DetailActivity extends AppCompatActivity {
 		} else {
 
 			// if no internet
-			Snackbar.make(findViewById(R.id.deskripsi_produk), "NO INTERNET", Snackbar.LENGTH_SHORT).show();
+			Snackbar.make(findViewById(R.id.deskripsi_produk), "Tidak Ada Koneksi Internet", Snackbar.LENGTH_SHORT).show();
 
 		}
 
@@ -158,11 +158,11 @@ public class DetailActivity extends AppCompatActivity {
 	// github dapitramdhan Toolbar Fade
 
 	private ToolbarFadeOnScrolling.OnScrollChangedListener mOnScrollChangedListener = new ToolbarFadeOnScrolling.OnScrollChangedListener() {
-		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
+		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl,int oldt) {
 			View decor = getWindow().getDecorView();
-			final int headerHeight = mHeader.getHeight() - toolbar.getHeight();
+			final int headerHeight = mHeader.getHeight() - toolbar.getHeight() - appBarLayout.getTotalScrollRange();
 			final float ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
-			final float ratioRange = (float) Math.min(Math.max(300f - t, +1f), headerHeight) / headerHeight;
+			final float ratioRange = (float) Math.min(Math.max(300f - t, + 0.0f), headerHeight) / headerHeight;
 			final int newAlpha = (int) (ratio * 255);
 			final int newAlphaIcon = (int) (ratioRange * 300f);
 
@@ -201,23 +201,25 @@ public class DetailActivity extends AppCompatActivity {
 		return true;
 	}
 
-	//	@Override
-	//	public boolean onCreateOptionsMenu(Menu menu) {
-	//		getMenuInflater().inflate(R.menu.menu_detail_produk, menu);
+	/*	@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			getMenuInflater().inflate(R.menu.menu_detail_produk, menu);
 
-	//		for (int i = 0; i < menu.size(); i++) {
-	//			Drawable drawable = menu.getItem(i).getIcon();
-	//			if (drawable != null) {
-	//				drawable.mutate();
-	//		drawable.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-	//			}
-	//		}
-	//		return true;
+			for (int i = 0; i < menu.size(); i++) {
+				Drawable drawable = menu.getItem(i).getIcon();
+				if (drawable != null) {
+					drawable.mutate();
+			drawable.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+				}
+			}
+			return true; 
+	*/
 }
 
-//toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white),
-//					PorterDuff.Mode.SRC_ATOP);
-//	if (t > 0 && headerHeight > 0)
-//				ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
-//	if (t > 0 && appbarHeight > 0)
-//ratio = (float) Math.min(Math.max(t, 0), appbarHeight) / appbarHeight;
+/* toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white),
+					PorterDuff.Mode.SRC_ATOP);
+	if (t > 0 && headerHeight > 0)
+				ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
+	if (t > 0 && appbarHeight > 0)
+ratio = (float) Math.min(Math.max(t, 0), appbarHeight) / appbarHeight; 
+*/

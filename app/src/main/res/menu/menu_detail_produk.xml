@@ -3,13 +3,11 @@
     <item 
 		android:id="@+id/homeNav" 
 		android:icon="@drawable/ic_cart" 
-		android:title="Home" 
 		app:showAsAction="ifRoom|withText"/>
 		
     <item 
 		android:id="@+id/feedNav" 
 		android:icon="@drawable/ic_share" 
-		app:showAsAction="ifRoom|withText"
-		android:title="Kategori"/>
+		app:showAsAction="ifRoom|withText"/>
 
 </menu>

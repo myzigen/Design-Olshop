@@ -9,7 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:elevation="0dp" >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/akunToolbar"
@@ -17,98 +18,197 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:fitsSystemWindows="true"
+            app:elevation="0dp"
             app:titleTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/one"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/appbar" >
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:padding="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorLight"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp" >
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/dapit" />
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-				
-				<androidx.cardview.widget.CardView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					app:cardCornerRadius="100dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/images" />
-					
-					</androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="10dp" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center|center_horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_vertical"
                     android:orientation="vertical" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Hafidz Ramdhani"
+                        android:layout_gravity="bottom|center_vertical"
+                        android:text="Dapit Ramdhani"
                         android:textColor="@color/black"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
+                </LinearLayout>
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_vertical"
+                    android:orientation="horizontal" >
+
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/white"
+                        app:strokeColor="@color/colorDefault"
+                        app:strokeWidth="0.800000011920929dp" >
 
-                        <com.google.android.material.card.MaterialCardView
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:background="@android:color/white" >
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center|center_horizontal"
+                            android:text="Edit Profil"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical|center|center_horizontal"
-                                android:text="Edit Profil"
-                                android:textColor="@color/colorPrimary" />
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorPrimary" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center|center_horizontal"
+                            android:text="Member Premium"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
-            <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/one"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical|center|center_horizontal"
-                android:orientation="horizontal" >
+                android:layout_weight="1"
+                android:text="Pesanan Saya" />
 
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottomnavigation"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|right"
+                android:text="Lihat Detail Pesanan" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/white"
-                    app:elevation="0dp"
-                    app:itemIconTint="@drawable/bottom_selector"
-                    app:itemRippleColor="@drawable/primary_transparent"
-                    app:itemTextColor="@drawable/bottom_selector"
-                    app:labelVisibilityMode="labeled"
-                    app:menu="@menu/bottomnav" />
-            </LinearLayout>
+                    android:drawableTop="@drawable/ic_home"
+                    android:gravity="center_horizontal"
+                    android:text="Belum Bayar" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_home"
+                    android:gravity="center_horizontal"
+                    android:text="Dikemas" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_home"
+                    android:gravity="center_horizontal"
+                    android:text="Di Kirim" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_home"
+                    android:gravity="center_horizontal"
+                    android:text="Beri Ulasan" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 
 </RelativeLayout>

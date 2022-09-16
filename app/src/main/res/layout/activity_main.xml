@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/white"
-            app:elevation="0dp"
+            app:elevation="3dp"
             app:itemIconTint="@drawable/bottom_selector"
             app:itemRippleColor="@drawable/primary_transparent"
             app:itemTextColor="@drawable/bottom_selector"

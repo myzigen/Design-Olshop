@@ -18,10 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentInsetEnd="1dp"
-            app:contentInsetLeft="7dp"
-            app:contentInsetRight="1dp"
-            app:contentInsetStart="7dp" >
+            app:contentInsetEnd="4dp"
+            app:contentInsetLeft="10dp"
+            app:contentInsetRight="4dp"
+            app:contentInsetStart="10dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,11 +37,11 @@
                     android:elevation="0dp"
                     android:focusable="false"
                     android:gravity="center_vertical|center|center_horizontal|left"
-                    android:text="Cari Di Bukatoko"
+                    android:text="Search Product"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorDefault"
-                    android:textSize="12.5dp"
-                    android:typeface="sans"
+                    android:textColor="#9DA3A4"
+                    android:textSize="13dp"
+                    android:typeface="normal"
                     app:backgroundTint="@color/white"
                     app:cornerRadius="2dp" />
 
@@ -92,14 +92,14 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="285dp"
+                android:layout_height="305dp"
                 android:background="@android:color/white" >
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    app:sliderAnimationDuration="1000"
+                    android:layout_height="260dp"
+                    app:sliderAnimationDuration="2000"
                     app:sliderIndicatorAnimationDuration="1000"
                     app:sliderIndicatorEnabled="true"
                     app:sliderIndicatorGravity="center|bottom"
@@ -115,8 +115,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom|center_vertical"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="2dp" >
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -128,7 +129,8 @@
                             android:layout_height="50dp"
                             android:layout_weight="1"
                             android:clickable="true"
-                            android:foreground="?android:attr/selectableItemBackground" >
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="0dp" >
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -144,7 +146,7 @@
                                     android:gravity="center_horizontal|left"
                                     android:text="Rp.0"
                                     android:textColor="@color/black"
-                                    android:textSize="13dp" />
+                                    android:textSize="14dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -152,6 +154,7 @@
                                     android:layout_gravity="center_horizontal|left"
                                     android:paddingLeft="1dp"
                                     android:text="Saldo BukaPay"
+                                    android:textColor="@color/blackLight"
                                     android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -166,7 +169,8 @@
                             android:layout_height="50dp"
                             android:layout_weight="1"
                             android:clickable="true"
-                            android:foreground="?android:attr/selectableItemBackground" >
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="0dp" >
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -182,7 +186,7 @@
                                     android:gravity="center_horizontal|left"
                                     android:text="11"
                                     android:textColor="@color/black"
-                                    android:textSize="13dp" />
+                                    android:textSize="14dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -190,6 +194,7 @@
                                     android:layout_gravity="center_horizontal|left"
                                     android:paddingLeft="1dp"
                                     android:text="Voucher Diskon"
+                                    android:textColor="@color/blackLight"
                                     android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -220,7 +225,7 @@
                     android:gravity="center_vertical|center|center_horizontal"
                     android:text="REKOMENDASI"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -230,7 +235,6 @@
                 android:nestedScrollingEnabled="false"
                 android:padding="5dp"
                 android:visibility="visible"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2" />
         </LinearLayout>
     </com.github.dapitramdhan.ToolbarFadeOnScrolling>

@@ -1,27 +1,29 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item 
-	  	android:id="@+id/homeNav" 
+	  	android:id="@+id/one_rail" 
 	  	android:icon="@drawable/ic_home" 
 		  android:title="Kecantikan"/>
 		
     <item
-		  android:id="@+id/feedNav"
+		  android:id="@+id/two_rail"
 		  android:icon="@drawable/ic_feed" 
 		  android:title="Handphone"/>
  
     <item
-		  android:id="@+id/KategoriNav"
+		  android:id="@+id/three_rail"
 		  android:icon="@drawable/ic_kategori" 
-		  android:title="Rumah Tangga"/>
+		  app:showAsAction="always"
+		  android:title="@string/menurail"/>
 		  
      <item
-		  android:id="@+id/transaksiNav"
+		  android:id="@+id/for_rail"
 		  android:icon="@drawable/ic_pesanan" 
 		  android:title="Aksesoris"/>
 		  
      <item
-		  android:id="@+id/akunNav"
+		  android:id="@+id/five_rail"
 		  android:icon="@drawable/ic_profile" 
 		  android:title="Makanan"/>
 

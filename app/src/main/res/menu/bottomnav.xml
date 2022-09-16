@@ -3,26 +3,26 @@
     <item 
 	  	android:id="@+id/homeNav" 
 	  	android:icon="@drawable/ic_home" 
-		  android:title="Home"/>
+		  android:title="@string/home"/>
 		
     <item
 		  android:id="@+id/feedNav"
 		  android:icon="@drawable/ic_feed" 
-		  android:title="Kategori"/>
+		  android:title="@string/kategori"/>
  
     <item
 		  android:id="@+id/KategoriNav"
 		  android:icon="@drawable/ic_kategori" 
-		  android:title="Feed"/>
+		  android:title="@string/feed"/>
 		  
      <item
 		  android:id="@+id/transaksiNav"
 		  android:icon="@drawable/ic_pesanan" 
-		  android:title="Pesanan"/>
+		  android:title="@string/pesanan"/>
 		  
      <item
 		  android:id="@+id/akunNav"
 		  android:icon="@drawable/ic_profile" 
-		  android:title="Akun"/>
+		  android:title="@string/akun"/>
 
 </menu>

@@ -26,6 +26,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.navigationrail.NavigationRailView
+			android:id="@+id/bottom_rail"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/appBar"
@@ -33,6 +34,7 @@
             android:clipToPadding="false"
             android:paddingEnd="0dp"
             android:paddingStart="0dp"
+			app:itemMaxLines="2"
             app:elevation="0dp"
 			android:textAlignment="viewEnd"
             app:itemBackground="@drawable/ripple_bottomrail"
