@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
@@ -15,7 +16,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +29,8 @@ import com.android.volley.toolbox.Volley;
 
 import com.github.dapitramdhan.ProdukActivity.Produk;
 import com.github.dapitramdhan.ProdukActivity.ProdukAdapter;
+import com.github.dapitramdhan.ProdukActivity.ProdukFlashsale;
+import com.github.dapitramdhan.ProdukActivity.ProdukFlashsaleAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderView;
@@ -42,16 +47,19 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 	private Drawable mActionBarBackgroundDrawable, searchDrawable;
 	private MaterialButton searchButton;
 	private View mHeader;
+	private TextView saldoUser;
 
 	public static final String EXTRA_URL = "imageUrl";
 	public static final String EXTRA_CREATOR = "creatorName";
 	public static final String EXTRA_LIKES = "likeCount";
 
-	private RecyclerView mRecylerView;
+	private RecyclerView mRecylerView, recyclerViewFlashsale;
 	private ProdukAdapter mExampleAdapter;
+	private ProdukFlashsaleAdapter flashsaleAdapter;
 	private ArrayList<Produk> mExampleList;
-	private RequestQueue mRequestQueue;
-
+	private ArrayList<ProdukFlashsale> flashsaleList;
+	private RequestQueue mRequestQueue, mRequestQueue2;
+	int saldo = 20000;
 	String url1 = "https://lh3.googleusercontent.com/-UyYKaDd0-ng/YxMr7W7gFWI/AAAAAAAACeQ/j8dJJ2hbWuovtVgHGl8nxTFrmVlrIzT4wCNcBGAsYHQ/s1600/IMG_ORG_1662200804074.png";
 	String url2 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
 	String url3 = "https://lh3.googleusercontent.com/-TZnz6NygqXM/YxM2Y1vckGI/AAAAAAAACeY/NnyDCgKcVE8OZKToX-G682kHEw-jvTXzwCNcBGAsYHQ/s1600/IMG_ORG_1662203445042.png";
@@ -77,7 +85,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		// right direction you can change according to requirement.
 		sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
 		// Indicator Style (WORM, THIN_WORM, DROP, SWAP, FILL)
-		sliderView.setIndicatorAnimation(IndicatorAnimationType.SWAP);
+		sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
 		// below method is used to
 		// setadapter to sliderview.
 		sliderView.setSliderAdapter(adapter);
@@ -95,6 +103,9 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		List<IconGridKategory> iconList;
 		RecyclerView recyclerView1;
 		recyclerView1 = view.findViewById(R.id.recylerIconKategori);
+		/*	LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,
+					false);
+			recyclerView1.setLayoutManager(linearLayoutManager);*/
 		recyclerView1.setHasFixedSize(true);
 		iconList = new ArrayList<>();
 		iconList.add(new IconGridKategory(1, "satu", R.drawable.ic_home));
@@ -110,15 +121,18 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		IconGridKategoryAdapter adapter2 = new IconGridKategoryAdapter(getActivity(), iconList);
 		recyclerView1.setAdapter(adapter2);
 
+		
+
 		// setting produk
 		mRecylerView = view.findViewById(R.id.recylerView);
-		StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL);
+		StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,
+				LinearLayoutManager.VERTICAL);
 		mRecylerView.setLayoutManager(staggeredGridLayoutManager);
 		mRecylerView.setHasFixedSize(true);
 		mExampleList = new ArrayList<>();
 		mRequestQueue = Volley.newRequestQueue(getActivity());
 		parseJSON();
-		return view; 
+		return view;
 	}
 
 	private void parseJSON() {
@@ -133,7 +147,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 						try {
 							JSONArray jsonArray = response.getJSONArray("hits");
 							for (int i = 0; i < jsonArray.length(); i++) {
-								JSONObject hit = jsonArray.getJSONObject(i);
+								JSONObject hit = jsonArray.getJSONObject(i);		
 
 								String creatorName = hit.getString("tags");
 								String imageUrl = hit.getString("webformatURL");
@@ -141,6 +155,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 								mExampleList.add(new Produk(imageUrl, creatorName, likeCount));
 
 							}
+							
 							mExampleAdapter = new ProdukAdapter(getActivity(), mExampleList);
 							mRecylerView.setAdapter(mExampleAdapter);
 							mExampleAdapter.notifyDataSetChanged();
@@ -157,6 +172,49 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 					}
 				});
 		mRequestQueue.add(request);
+
+	}
+
+	private void produkFlashsale() {
+
+		String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+		// "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true"
+
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+				new Response.Listener<JSONObject>() {
+					@Override
+					public void onResponse(JSONObject response) {
+
+						try {
+							JSONArray jsonArray = response.getJSONArray("hits");
+							for (int i = 0; i < jsonArray.length(); i++) {
+								JSONObject hit = jsonArray.getJSONObject(i);
+
+								// flashsale 
+								String namaProdukFlashsale = hit.getString("tags");
+								String imageUrlFlashsale = hit.getString("webformatURL");
+								int like2 = hit.getInt("likes");
+								flashsaleList.add(new ProdukFlashsale(imageUrlFlashsale, namaProdukFlashsale, like2));
+
+							}
+
+							flashsaleAdapter = new ProdukFlashsaleAdapter(getActivity(), flashsaleList);
+							recyclerViewFlashsale.setAdapter(flashsaleAdapter);
+							flashsaleAdapter.notifyDataSetChanged();
+
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						error.printStackTrace();
+					}
+				});
+	
+		mRequestQueue2.add(request);
+
 	}
 
 	// item click produk detail
@@ -177,7 +235,6 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 		// Toolbar Fade
 		toolbar = view.findViewById(R.id.toolbar);
-		searchButton = view.findViewById(R.id.search_home);
 		mHeader = view.findViewById(R.id.slider);
 
 		((AppCompatActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
@@ -187,6 +244,19 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 
 		((ToolbarFadeOnScrolling) view.findViewById(R.id.scrollview))
 				.setOnScrollChangedListener(mOnScrollChangedListener);
+
+		// produk flash sale
+		recyclerViewFlashsale = view.findViewById(R.id.recycler_flashsale);
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,
+					false);
+	//	SnapHelper snaphelper = new PagerSnapHelper();
+		recyclerViewFlashsale.setLayoutManager(linearLayoutManager);
+	//	snaphelper.attachToRecyclerView(recyclerViewFlashsale);
+		recyclerViewFlashsale.setHasFixedSize(true);
+		flashsaleList = new ArrayList<>();
+		mRequestQueue2 = Volley.newRequestQueue(getActivity());
+		produkFlashsale();
+
 	}
 
 	// github dapitramdhan Toolbar Fade

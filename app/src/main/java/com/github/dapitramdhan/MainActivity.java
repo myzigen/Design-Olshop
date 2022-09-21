@@ -29,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		bottomNavigationView = findViewById(R.id.bottomnavigation);
-	//	CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
-	//	layoutParams.setBehavior(new BottomNavigationBehavior());
+		//	CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+		//	layoutParams.setBehavior(new BottomNavigationBehavior());
 		badge = bottomNavigationView.getOrCreateBadge(R.id.transaksiNav);
 		badge.setVisible(true);
-		badge.setNumber(9);
+		badge.setNumber(999);
 		badge.setMaxCharacterCount(3);
 		badge.setVerticalOffset(dpToPx(this, 3));
-		badge.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+		//badge.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 		getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeUtama()).commit();
 		bottomNavigationView
 				.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,7 +70,5 @@ public class MainActivity extends AppCompatActivity {
 		Resources r = c.getResources();
 		return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
 	}
-
-	
 
 }

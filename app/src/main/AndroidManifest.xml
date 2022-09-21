@@ -33,6 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity
+			android:name="com.github.dapitramdhan.UserSetting.LoginActivity"
+			android:theme="@style/LoginTheme"/>
         <activity
             android:name=".DetailActivity"
             android:theme="@style/whiteTheme" />

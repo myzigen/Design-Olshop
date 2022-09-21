@@ -8,7 +8,6 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-
     </style>
 
     <style name="Theme.TranslucentActionBar.ActionBar" />
@@ -18,8 +17,8 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-		<item name="android:textSize">13sp</item>
-		<item name="android:textColor">@color/colorDefault</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorDefault</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
@@ -40,7 +39,12 @@
         <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
-    
+    <style name="LoginTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+		<item name="colorControlHighlight">@color/colorControlHighlight</item>
+    </style>
 
     <style name="ToolbarTheme">
         <item name="colorPrimary">@color/toolbarColor</item>

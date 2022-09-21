@@ -33,61 +33,67 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
+                    <ImageButton
+                        android:id="@+id/button_back1"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/oval_rounded"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_arrow_back_white" />
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="0dp" />
+
                     <LinearLayout
+                        android:id="@+id/linearSearch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal|left"
                         android:orientation="horizontal" >
 
-                        <ImageButton
-                            android:id="@+id/button_back1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/oval_rounded"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:tint="#000000"
-                            app:srcCompat="@drawable/ic_arrow_back_white" />
+                     
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="0dp" />
+
+                    <ImageButton
+                        android:id="@+id/button_back2"
+                        android:layout_width="35dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal|right"
-                        android:orientation="horizontal" >
+                        android:layout_gravity="center_horizontal|right"
+                        android:background="@drawable/oval_rounded"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_cart" />
 
-                        <ImageButton
-                            android:id="@+id/button_back2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|right"
-                            android:background="@drawable/oval_rounded"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:tint="#000000"
-                            app:srcCompat="@drawable/ic_cart" />
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent" />
 
-                        <View
-                            android:layout_width="5dp"
-                            android:layout_height="0dp"
-                            android:background="@android:color/transparent" />
-
-                        <ImageButton
-                            android:id="@+id/button_back3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|right"
-                            android:background="@drawable/oval_rounded"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:tint="#000000"
-                            app:srcCompat="@drawable/ic_share" />
-                    </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/button_back3"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|right"
+                        android:background="@drawable/oval_rounded"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_share" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
+		
         </com.google.android.material.appbar.AppBarLayout>
+		
+			<View
+				android:layout_below="@+id/appbar"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#dddddd"/>
 
         <com.github.dapitramdhan.ToolbarFadeOnScrolling
             android:id="@+id/scroll_produk_detail"
@@ -105,7 +111,8 @@
                 <ImageView
                     android:id="@+id/image_view_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="370dp"
+					android:background="@drawable/ic_no_image"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher" />
 
@@ -135,9 +142,9 @@
                         android:textSize="17sp" />
 
                     <LinearLayout
-						android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:gravity="center_vertical|center|center_horizontal|left"
                         android:orientation="horizontal" >
 
@@ -161,14 +168,12 @@
                             android:textColor="@color/black"
                             android:textSize="13dp" />
                     </LinearLayout>
-					
-					<WebView
-						android:layout_marginTop="10dp"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/deskripsi_produk">
-						
-					</WebView>
+
+                    <WebView
+                        android:id="@+id/deskripsi_produk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -211,7 +216,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="3dp"
                     app:cardUseCompatPadding="true"
-                    app:strokeColor="@color/colorPrimary"
+                    app:strokeColor="@color/colorTextLight"
                     app:strokeWidth="0.800000011920929dp" >
 
                     <ImageButton
@@ -222,7 +227,7 @@
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_chat"
-                        android:tint="@color/colorPrimary" />
+                        android:tint="@color/colorTextLight" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -235,7 +240,7 @@
                     app:cardCornerRadius="3dp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true"
-                    app:strokeColor="@color/colorPrimary"
+                    app:strokeColor="@color/colorTextLight"
                     app:strokeWidth="0.800000011920929dp" >
 
                     <TextView
@@ -244,13 +249,13 @@
                         android:layout_gravity="center_vertical|center|center_horizontal"
                         android:drawableLeft="@drawable/ic_cart"
                         android:drawablePadding="10dp"
-                        android:drawableTint="@color/colorPrimary"
+                        android:drawableTint="@color/colorTextLight"
                         android:text="Keranjang"
-                        android:textColor="@color/colorPrimary" />
+                        android:textColor="@color/colorTextLight" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.cardview.widget.CardView
-					android:id="@+id/card_beli"
+                    android:id="@+id/card_beli"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"

@@ -18,10 +18,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ColorStateListInflaterCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -40,8 +40,9 @@ public class DetailActivity extends AppCompatActivity {
 	public static final String EXTRA_CREATOR = "creatorName";
 	public static final String EXTRA_LIKES = "likeCount";
 	private Toolbar toolbar;
-	private Drawable drawableToolbar, iconBack;
-	private View mHeader;
+	private MaterialButton cardViewSearch;
+	private Drawable drawableToolbar, iconBack, searchDrawable;
+	private View mHeader, mIcon;
 	private AppBarLayout appBarLayout;
 	private ImageButton buttonBack1, buttonBack2, buttonBack3;
 	private ToolbarFadeOnScrolling scrool;
@@ -62,20 +63,23 @@ public class DetailActivity extends AppCompatActivity {
 		drawableToolbar = getResources().getDrawable(R.drawable.warna_utama_white);
 		toolbar.setBackgroundDrawable(drawableToolbar);
 		drawableToolbar.setAlpha(0);
+	
 		mHeader = findViewById(R.id.image_view_detail);
 		appBarLayout = findViewById(R.id.appbar);
 		buttonBack1 = findViewById(R.id.button_back1);
 		buttonBack2 = findViewById(R.id.button_back2);
 		buttonBack3 = findViewById(R.id.button_back3);
-
+		
+		
+		
 		iconBack = getResources().getDrawable(R.drawable.oval_rounded);
 		buttonBack1.setBackgroundDrawable(iconBack);
 		buttonBack2.setBackgroundDrawable(iconBack);
 		buttonBack3.setBackgroundDrawable(iconBack);
-		buttonBack1.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-		buttonBack2.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-		buttonBack3.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-
+		/*	buttonBack1.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+			buttonBack2.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+			buttonBack3.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+		*/
 		((ToolbarFadeOnScrolling) findViewById(R.id.scroll_produk_detail))
 				.setOnScrollChangedListener(mOnScrollChangedListener);
 
@@ -87,12 +91,11 @@ public class DetailActivity extends AppCompatActivity {
 		ImageView imageView = findViewById(R.id.image_view_detail);
 		TextView textViewCreator = findViewById(R.id.text_view_creator_detail);
 		TextView textViewLikes = findViewById(R.id.text_view_like_detail);
-		
 
 		Picasso.with(this).load(imageUrl).fit().centerInside().into(imageView);
 		textViewCreator.setText(creatorName);
 		textViewLikes.setText("Likes:" + likeCount);
-		
+
 		webView = findViewById(R.id.deskripsi_produk);
 		// Deskripsi WebView
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -129,7 +132,8 @@ public class DetailActivity extends AppCompatActivity {
 		} else {
 
 			// if no internet
-			Snackbar.make(findViewById(R.id.deskripsi_produk), "Tidak Ada Koneksi Internet", Snackbar.LENGTH_SHORT).show();
+			Snackbar.make(findViewById(R.id.deskripsi_produk), "Tidak Ada Koneksi Internet", Snackbar.LENGTH_LONG)
+					.show();
 
 		}
 
@@ -158,13 +162,13 @@ public class DetailActivity extends AppCompatActivity {
 	// github dapitramdhan Toolbar Fade
 
 	private ToolbarFadeOnScrolling.OnScrollChangedListener mOnScrollChangedListener = new ToolbarFadeOnScrolling.OnScrollChangedListener() {
-		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl,int oldt) {
+		public void onScrollChanged(NestedScrollView who, int l, int t, int oldl, int oldt) {
 			View decor = getWindow().getDecorView();
-			final int headerHeight = mHeader.getHeight() - toolbar.getHeight() - appBarLayout.getTotalScrollRange();
-			final float ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
-			final float ratioRange = (float) Math.min(Math.max(300f - t, + 0.0f), headerHeight) / headerHeight;
+			final int headerHeight = mHeader.getHeight() - toolbar.getHeight();
+			final float ratio = (float) Math.min(Math.max(t, 0.0f), headerHeight) / headerHeight;
+			final float ratioRange = (float) Math.min(Math.max(300f - t, +0.0f), headerHeight) / headerHeight;
 			final int newAlpha = (int) (ratio * 255);
-			final int newAlphaIcon = (int) (ratioRange * 300f);
+			final int newAlphaIcon = (int) (ratioRange * 600);
 
 			if (t + ratio == 0) {
 
@@ -191,6 +195,7 @@ public class DetailActivity extends AppCompatActivity {
 			}
 
 			drawableToolbar.setAlpha(newAlpha);
+		
 
 		}
 	};
@@ -204,7 +209,7 @@ public class DetailActivity extends AppCompatActivity {
 	/*	@Override
 		public boolean onCreateOptionsMenu(Menu menu) {
 			getMenuInflater().inflate(R.menu.menu_detail_produk, menu);
-
+	
 			for (int i = 0; i < menu.size(); i++) {
 				Drawable drawable = menu.getItem(i).getIcon();
 				if (drawable != null) {

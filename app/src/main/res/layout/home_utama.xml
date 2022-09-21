@@ -28,22 +28,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search_home"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical|center|center_horizontal"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_search"
-                    android:elevation="0dp"
-                    android:focusable="false"
-                    android:gravity="center_vertical|center|center_horizontal|left"
-                    android:text="Search Product"
-                    android:textAllCaps="false"
-                    android:textColor="#9DA3A4"
-                    android:textSize="13dp"
-                    android:typeface="normal"
-                    app:backgroundTint="@color/white"
-                    app:cornerRadius="2dp" />
+                    app:cardElevation="0dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center|center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+							android:drawableTint="@color/colorTextLight"
+                            android:drawableLeft="@drawable/ic_search"
+                            android:drawablePadding="10dp"
+                            android:paddingLeft="15dp"
+                            android:text="Search Product"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <RelativeLayout
                     android:layout_width="4dp"
@@ -99,8 +108,8 @@
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
-                    app:sliderAnimationDuration="2000"
-                    app:sliderIndicatorAnimationDuration="1000"
+                    app:sliderAnimationDuration="1500"
+                    app:sliderIndicatorAnimationDuration="1500"
                     app:sliderIndicatorEnabled="true"
                     app:sliderIndicatorGravity="center|bottom"
                     app:sliderIndicatorMarginBottom="22dp"
@@ -139,6 +148,7 @@
                                 android:orientation="vertical" >
 
                                 <TextView
+                                    android:id="@+id/saldo_user"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableLeft="@drawable/ic_wallet"
@@ -154,12 +164,12 @@
                                     android:layout_gravity="center_horizontal|left"
                                     android:paddingLeft="1dp"
                                     android:text="Saldo BukaPay"
-                                    android:textColor="@color/blackLight"
+                                    android:textColor="@color/colorTextLight"
                                     android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <View
+                        <Space
                             android:layout_width="0.800000011920929dp"
                             android:layout_height="0dp"
                             android:background="@color/colorLight" />
@@ -194,7 +204,7 @@
                                     android:layout_gravity="center_horizontal|left"
                                     android:paddingLeft="1dp"
                                     android:text="Voucher Diskon"
-                                    android:textColor="@color/blackLight"
+                                    android:textColor="@color/colorTextLight"
                                     android:textSize="12dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -209,13 +219,26 @@
                 android:background="@color/white"
                 android:nestedScrollingEnabled="false"
                 android:padding="8dp"
+                android:paddingTop="50dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="5" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_flashsale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/warna_transparent"
+                android:descendantFocusability="beforeDescendants"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:isScrollContainer="false"
+                android:nestedScrollingEnabled="false"
+                android:padding="5.5dp"
                 app:spanCount="5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="horizontal"
                 android:padding="10dp" >
 
@@ -233,8 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="false"
-                android:padding="5dp"
-                android:visibility="visible"
+                android:padding="5.5dp"
                 app:spanCount="2" />
         </LinearLayout>
     </com.github.dapitramdhan.ToolbarFadeOnScrolling>
