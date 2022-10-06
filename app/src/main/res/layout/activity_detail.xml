@@ -1,7 +1,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+	android:background="@null">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,9 +38,11 @@
                         android:id="@+id/button_back1"
                         android:layout_width="35dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/oval_rounded"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ripple_oval"
                         android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
+                        android:foreground="@drawable/ripple_oval"
+                        android:scaleType="centerInside"
                         app:srcCompat="@drawable/ic_arrow_back_white" />
 
                     <Space
@@ -52,8 +55,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal" >
-
-                     
                     </LinearLayout>
 
                     <Space
@@ -86,14 +87,13 @@
                         app:srcCompat="@drawable/ic_share" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
-		
         </com.google.android.material.appbar.AppBarLayout>
-		
-			<View
-				android:layout_below="@+id/appbar"
-				android:layout_width="match_parent"
-				android:layout_height="0.8dp"
-				android:background="#dddddd"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_below="@+id/appbar"
+            android:background="#dddddd" />
 
         <com.github.dapitramdhan.ToolbarFadeOnScrolling
             android:id="@+id/scroll_produk_detail"
@@ -112,7 +112,7 @@
                     android:id="@+id/image_view_detail"
                     android:layout_width="match_parent"
                     android:layout_height="370dp"
-					android:background="@drawable/ic_no_image"
+                    android:background="@drawable/ic_no_image"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher" />
 
@@ -168,12 +168,6 @@
                             android:textColor="@color/black"
                             android:textSize="13dp" />
                     </LinearLayout>
-
-                    <WebView
-                        android:id="@+id/deskripsi_produk"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"

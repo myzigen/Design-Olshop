@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="#ffffff"
         android:orientation="horizontal"
         android:padding="15dp" >
 
@@ -35,8 +36,8 @@
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_maps"
             android:drawablePadding="12dp"
-			android:drawableTint="@color/colorTextLight"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Alamat Saya"
             android:textColor="@color/blackLight" />
     </LinearLayout>
@@ -52,11 +53,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-			android:drawableTint="@color/colorTextLight"
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_voucher24dp"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Voucher Saya"
             android:textColor="@color/blackLight" />
     </LinearLayout>
@@ -70,13 +71,13 @@
         android:padding="15dp" >
 
         <TextView
-			android:drawableTint="@color/colorTextLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_start"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Favorite Saya"
             android:textColor="@color/blackLight" />
     </LinearLayout>
@@ -90,13 +91,13 @@
         android:padding="15dp" >
 
         <TextView
-			android:drawableTint="@color/colorTextLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_eye"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Terakhir Dilihat"
             android:textColor="@color/blackLight" />
     </LinearLayout>
@@ -110,14 +111,34 @@
         android:padding="15dp" >
 
         <TextView
-			android:drawableTint="@color/colorTextLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_akun_add"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Ajak Teman"
+            android:textColor="@color/blackLight" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="15dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center|center_horizontal"
+            android:drawableLeft="@drawable/ic_akun_add"
+            android:drawablePadding="12dp"
+            android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
+            android:text="Ulasan Saya"
             android:textColor="@color/blackLight" />
     </LinearLayout>
 
@@ -157,8 +178,8 @@
             android:drawableLeft="@drawable/ic_setting"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Pengaturan Akun"
-			android:drawableTint="@color/colorTextLight"
             android:textColor="@color/blackLight" />
     </LinearLayout>
 
@@ -171,13 +192,13 @@
         android:padding="15dp" >
 
         <TextView
-			android:drawableTint="@color/colorTextLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center|center_horizontal"
             android:drawableLeft="@drawable/ic_headphone"
             android:drawablePadding="12dp"
             android:drawableRight="@drawable/ic_chevron_right_black"
+            android:drawableTint="@color/colorTextLight"
             android:text="Pusat Bantuan"
             android:textColor="@color/blackLight" />
     </LinearLayout>

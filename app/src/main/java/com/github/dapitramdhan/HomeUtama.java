@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.github.dapitramdhan.ProdukActivity.KeranjangActivity;
 import com.github.dapitramdhan.ProdukActivity.Produk;
 import com.github.dapitramdhan.ProdukActivity.ProdukAdapter;
 import com.github.dapitramdhan.ProdukActivity.ProdukFlashsale;
@@ -108,7 +110,7 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 			recyclerView1.setLayoutManager(linearLayoutManager);*/
 		recyclerView1.setHasFixedSize(true);
 		iconList = new ArrayList<>();
-		iconList.add(new IconGridKategory(1, "satu", R.drawable.ic_home));
+		iconList.add(new IconGridKategory(1, "satu", R.drawable.images));
 		iconList.add(new IconGridKategory(1, "dua", R.drawable.ic_home));
 		iconList.add(new IconGridKategory(1, "tiga", R.drawable.ic_home));
 		iconList.add(new IconGridKategory(1, "empat", R.drawable.ic_home));
@@ -256,6 +258,16 @@ public class HomeUtama extends Fragment implements ProdukAdapter.OnItemClickList
 		flashsaleList = new ArrayList<>();
 		mRequestQueue2 = Volley.newRequestQueue(getActivity());
 		produkFlashsale();
+		
+		ImageButton mKeranjang = view.findViewById(R.id.keranjang_button);
+		mKeranjang.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Intent i = new Intent(getActivity(), KeranjangActivity.class);
+				startActivity(i);
+				
+			}
+		});
 
 	}
 

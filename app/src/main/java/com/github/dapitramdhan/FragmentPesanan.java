@@ -23,7 +23,7 @@ public class FragmentPesanan extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		feedToolbar = view.findViewById(R.id.pesananToolbar);
-		feedToolbar.setTitle("Pesanan");
+		feedToolbar.setTitle("Notifikasi");
 		((AppCompatActivity) getActivity()).getDelegate().setSupportActionBar(feedToolbar);
 	}
 }

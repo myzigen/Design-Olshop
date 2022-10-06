@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    
     app:cardCornerRadius="3dp"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true" >
@@ -12,12 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+		
+		<com.google.android.material.card.MaterialCardView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:strokeColor="#dddddd"
+			app:cardCornerRadius="2dp"
+			android:layout_gravity="center_vertical|center|center_horizontal"
+			app:strokeWidth="0.8dp">
 
         <ImageView
             android:id="@+id/iconKategoriGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_width="30dp"
+			android:scaleType="fitXY"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|center|center_horizontal" />
+			
+		</com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="match_parent"

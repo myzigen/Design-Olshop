@@ -40,6 +40,11 @@
             app:itemBackground="@drawable/ripple_bottomrail"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_rail" />
+			
+			<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_toEndOf="@+id/bottomrail"/>
     </com.github.dapitramdhan.WindowInsetsRelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

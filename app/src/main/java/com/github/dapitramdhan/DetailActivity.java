@@ -27,6 +27,7 @@ import androidx.core.content.res.ColorStateListInflaterCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
+import com.github.dapitramdhan.ProdukActivity.KeranjangActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -68,9 +69,7 @@ public class DetailActivity extends AppCompatActivity {
 		appBarLayout = findViewById(R.id.appbar);
 		buttonBack1 = findViewById(R.id.button_back1);
 		buttonBack2 = findViewById(R.id.button_back2);
-		buttonBack3 = findViewById(R.id.button_back3);
-		
-		
+		buttonBack3 = findViewById(R.id.button_back3);		
 		
 		iconBack = getResources().getDrawable(R.drawable.oval_rounded);
 		buttonBack1.setBackgroundDrawable(iconBack);
@@ -96,7 +95,7 @@ public class DetailActivity extends AppCompatActivity {
 		textViewCreator.setText(creatorName);
 		textViewLikes.setText("Likes:" + likeCount);
 
-		webView = findViewById(R.id.deskripsi_produk);
+
 		// Deskripsi WebView
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -106,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
 				|| connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
 						.getState() == NetworkInfo.State.CONNECTED) {
 
-			webView.setWebViewClient(new WebViewClient());
+			/*webView.setWebViewClient(new WebViewClient());
 			webView.loadUrl("file:///android_asset/deskripsi_produk.html");
 			//webView.loadUrl("https://google.com");
 
@@ -114,6 +113,7 @@ public class DetailActivity extends AppCompatActivity {
 
 			WebSettings webSetting = webView.getSettings();
 			webSetting.setJavaScriptEnabled(true);
+			*/
 
 			/*
 			 *  Solve this
@@ -131,9 +131,7 @@ public class DetailActivity extends AppCompatActivity {
 
 		} else {
 
-			// if no internet
-			Snackbar.make(findViewById(R.id.deskripsi_produk), "Tidak Ada Koneksi Internet", Snackbar.LENGTH_LONG)
-					.show();
+		
 
 		}
 
@@ -141,9 +139,17 @@ public class DetailActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				Intent back = new Intent(DetailActivity.this, MainActivity.class);
-				back.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(back);
-				finish();
+				onSupportNavigateUp();
+		
+			}
+		});
+		
+		buttonBack2.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Intent i = new Intent(DetailActivity.this, KeranjangActivity.class);
+				startActivity(i);
+				
 			}
 		});
 

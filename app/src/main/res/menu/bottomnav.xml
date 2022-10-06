@@ -17,7 +17,7 @@
 		  
      <item
 		  android:id="@+id/transaksiNav"
-		  android:icon="@drawable/ic_pesanan" 
+		  android:icon="@drawable/ic_notifications" 
 		  android:title="@string/pesanan"/>
 		  
      <item
