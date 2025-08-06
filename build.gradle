@@ -1,25 +1,22 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         google()
-        maven { url 'https://jitpack.io' }
-    	maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
 
     dependencies {
-      		  classpath 'com.android.tools.build:gradle:8.4.0-alpha07'		
-		// build.gradle (project level)
+        classpath 'com.android.tools.build:gradle:8.4.0-alpha07'
     }
 }
 
 allprojects {
     repositories {
         google()
-        maven { url 'https://jitpack.io' }
-    	maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
 }
 
