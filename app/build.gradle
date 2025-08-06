@@ -35,8 +35,9 @@ android {
 	aaptOptions{
 	cruncherEnabled = false
 }
-	buildType.all{
-	isCrunchPngs = false
+	buildTypes.all {
+    it.crunchPngs = false
+}
 }
 
 dependencies {
