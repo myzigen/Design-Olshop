@@ -1,9 +1,10 @@
 buildscript {
     repositories {
         google()
-        mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url 'https://plugins.gradle.org/m2/' }
+    	maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://mvnrepository.com/' }
+        mavenCentral()
     }
 
     dependencies {
@@ -14,9 +15,10 @@ buildscript {
 allprojects {
     repositories {
         google()
-        mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url 'https://plugins.gradle.org/m2/' }
+    	maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://mvnrepository.com/' }
+        mavenCentral()
     }
 }
 
